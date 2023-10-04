@@ -1,17 +1,16 @@
 package com.app.repository;
 
-import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.List;
 
 public interface GenericRepository<T, ID> {
-    void writeEntityToFile(String string) throws FileNotFoundException;
-    ArrayList<String> readEntityFromFile() throws FileNotFoundException;
-    void clearFile() throws FileNotFoundException;
+    List<T> getAll();
 
-    T convertStringToEntity(String string) throws ParseException;
-    String convertEntityToString(T t);
+    T getById(ID id);
 
-    void writeFullEntityToFile() throws FileNotFoundException;
-    void readFullEntityFromFile() throws FileNotFoundException;
+    T save(T t) throws IOException;
+
+    T update(T t) throws IOException;
+
+    void deleteById(ID id) throws IOException;
 }

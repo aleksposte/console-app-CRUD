@@ -23,7 +23,6 @@ public class WriterController {
                 case "5" -> addListElementsForWriter();
                 case "6" -> {
                     isExit = true;
-                    MainController.startMain();
                 }
                 case "7" -> isExit = true;
                 // default - > обработать невравильный ввод цифры
