@@ -1,6 +1,7 @@
 package com.app.repository.gson;
 
 import com.app.model.Label;
+import com.app.poststatus.LabelStatus;
 import com.app.repository.LabelRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -80,9 +81,13 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
 
     @Override
     public void deleteById(Integer id) throws IOException {
-        List<Label> labels = getAllLabels();
-        labels.removeIf(label -> label.getId().equals(id));
-
+        List<Label> labels = getAllLabels()
+                .stream().map(existingLabel -> {
+                    if(existingLabel.getId().equals(id)) {
+                        existingLabel.setName(existingLabel.getName(), LabelStatus.DELETED);
+                    }
+                    return existingLabel;
+                }).toList();
         writeLabelsToFile(labels);
     }
 }
