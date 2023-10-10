@@ -3,27 +3,38 @@ package com.app.repository.gson;
 import com.app.model.Label;
 import com.app.repository.LabelRepository;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 
 public class GsonLabelRepositoryImpl implements LabelRepository {
+    private final String FILE_PATH = "src/main/resources/labels.json";
+    private final Gson gson = new Gson();
 
-    private final Gson GSON = new Gson();
-    private final String FILE_PATH = "src/main/java/resources/labels.json";
-
-
-    private List<Label> getAllLabels() {
-        return new ArrayList<>();
+    private void writeLabelsToFile(List<Label> labels) {
+        try(FileWriter writer = new FileWriter(FILE_PATH)){
+            gson.toJson(labels, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void writeLabelsToFile(List<Label> labels) throws IOException {
-        String json = GSON.toJson(labels);
-        //TODO: write string to file
-        FileWriter writer = new FileWriter(FILE_PATH);
-        GSON.toJson(labels);
+    private List<Label> getAllLabels() {
+        try (Reader reader = new FileReader(FILE_PATH)) {
+            Type type = new TypeToken<List<Label>>(){}.getType();
+            List<Label> labels = gson.fromJson(reader, type);
+
+            return labels;
+        } catch (IOException e) {
+            System.out.println("Err: " + e);
+            return Collections.emptyList();
+        }
     }
 
     private Integer generateId(List<Label> labels) {
@@ -37,8 +48,10 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
 
     @Override
     public Label getById(Integer id) {
-        return getAllLabels()
-                .stream().filter(l -> l.getId().equals(id)).findFirst().orElse(null);
+        return getAllLabels().stream()
+                .filter(label -> label.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -48,6 +61,7 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
         labelToSave.setId(generateId(labels));
         labels.add(labelToSave);
         writeLabelsToFile(labels);
+
         return labelToSave;
     }
 
@@ -58,7 +72,6 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
                     if(existingLabel.getId().equals(labelToUpdate.getId())) {
                         return labelToUpdate;
                     }
-
                     return existingLabel;
                 }).toList();
         writeLabelsToFile(labels);

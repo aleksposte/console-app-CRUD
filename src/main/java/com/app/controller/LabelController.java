@@ -1,29 +1,40 @@
 package com.app.controller;
 
 import com.app.model.Label;
+import com.app.poststatus.LabelStatus;
 import com.app.repository.LabelRepository;
 import com.app.repository.gson.GsonLabelRepositoryImpl;
-import com.app.view.LabelView;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LabelController {
     private final LabelRepository labelRepository = new GsonLabelRepositoryImpl();
-//    public final LabelView labelView = new LabelView();
-//    Label labelTest = new Label();
 
-//    labelView.start();
+    public Label create(String name, LabelStatus labelStatus) throws IOException {
+        Label label = new Label();
+        label.setName(name, labelStatus);
 
-    public void start() throws IOException {
-        LabelView labelView = new LabelView();
-        labelView.start();
+        return labelRepository.save(label);
     }
 
+    public Label read(Integer id) {
+        return labelRepository.getById(id);
+    }
 
-    public Label create(String name) throws IOException {
+    public Label update(Integer id, String name, LabelStatus labelStatus) throws IOException {
         Label label = new Label();
-        label.setName(name);
-        return labelRepository.save(label);
-//        return null;
+        label.setName(name, labelStatus);
+        label.setId(id);
+
+        return labelRepository.update(label);
+    }
+
+    public void delete(Integer id) throws IOException {
+        labelRepository.deleteById(id);
+    }
+
+    public List<Label> getAll() {
+        return labelRepository.getAll();
     }
 }

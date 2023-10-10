@@ -1,5 +1,8 @@
 import com.app.controller.LabelController;
 import com.app.controller.WriterController;
+import com.app.repository.LabelRepository;
+import com.app.repository.gson.GsonLabelRepositoryImpl;
+import com.app.view.LabelView;
 
 
 import java.io.IOException;
@@ -10,13 +13,15 @@ public class AppRunner {
     boolean isExit = false;
 
     public void start() throws Exception {
+        LabelStart(); // start Label!
+
         String menuMessage =
                 "Choice and Enter: \n" +
                         "1. Writer \n" +
                         "2. Post \n" +
                         "3. Label \n" +
                         "4. Exit";
-        System.out.println(menuMessage);
+//        System.out.println(menuMessage);
 
         do {
             String responce = scanner.next();
@@ -46,7 +51,9 @@ public class AppRunner {
 
     public void LabelStart() throws IOException {
         LabelController labelController = new LabelController();
-        labelController.start();
+        LabelView labelView = new LabelView(labelController);
+
+        labelView.start();
     }
 };
 
