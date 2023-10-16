@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,6 +31,10 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
         try (Reader reader = new FileReader(FILE_PATH)) {
             Type type = new TypeToken<List<Label>>(){}.getType();
             List<Label> labels = gson.fromJson(reader, type);
+
+            if (labels == null) {
+                labels = new ArrayList<>();
+            }
 
             return labels;
         } catch (IOException e) {

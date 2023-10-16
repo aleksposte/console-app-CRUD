@@ -1,8 +1,7 @@
 import com.app.controller.LabelController;
-import com.app.controller.WriterController;
-import com.app.repository.LabelRepository;
-import com.app.repository.gson.GsonLabelRepositoryImpl;
+import com.app.controller.PostController;
 import com.app.view.LabelView;
+import com.app.view.PostView;
 
 
 import java.io.IOException;
@@ -13,8 +12,8 @@ public class AppRunner {
     boolean isExit = false;
 
     public void start() throws Exception {
-        LabelStart(); // start Label!
-
+//        LabelStart(); // start Label!
+PostStart();
         String menuMessage =
                 "Choice and Enter: \n" +
                         "1. Writer \n" +
@@ -33,7 +32,7 @@ public class AppRunner {
                 }
                 case "2" -> {
                     isExit = true;
-//                    Post.start();
+                    PostStart();
                 }
                 case "3" -> {
                     isExit = true;
@@ -54,6 +53,13 @@ public class AppRunner {
         LabelView labelView = new LabelView(labelController);
 
         labelView.start();
+    }
+
+    public void PostStart() throws IOException {
+        PostController labelController = new PostController();
+        PostView PostView = new PostView(labelController);
+
+        PostView.start();
     }
 };
 
