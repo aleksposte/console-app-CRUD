@@ -48,7 +48,6 @@ public class GsonPostRepositoryImpl implements PostRepository {
     }
 
     private Integer generateId(List<Post> posts) {
-        System.out.println("generateId -> " + posts);
         return posts.stream().mapToInt(Post::getId).max().orElse(0) + 1;
     }
 

@@ -41,9 +41,7 @@ public class Post {
         if (labels == null) {
             labels = new ArrayList<>();
         }
-        System.out.println("addLabelToPost before  ->  " + labels);
-        labels.add(label);
 
-        System.out.println("addLabelToPost AFTER  ->  " + labels);
+        labels.add(label);
     }
 }

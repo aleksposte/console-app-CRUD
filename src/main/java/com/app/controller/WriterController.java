@@ -1,52 +1,50 @@
 package com.app.controller;
 
-import com.app.view.WriterView;
+import com.app.model.Post;
+import com.app.model.Writer;
+import com.app.poststatus.WriterStatus;
+import com.app.repository.WriterRepository;
+import com.app.repository.gson.GsonWriterRepositoryImpl;
 
-import java.io.FileNotFoundException;
-
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.List;
 
 public class WriterController {
-    public static void start() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        boolean isExit = false;
+    private final WriterRepository writerRepository = new GsonWriterRepositoryImpl();
 
-        do {
-            String responce = scanner.next();
-            WriterView.show();
+    public Writer create(String firstName, String lastName, WriterStatus writerStatus, List<Post> posts) throws IOException {
+        Writer writer = new Writer();
 
-            switch (responce) {
-                case "1" -> create();
-                case "2" -> update();
-                case "3" -> delete();
-                case "4" -> show();
-                case "5" -> addListElementsForWriter();
-                case "6" -> {
-                    isExit = true;
-                }
-                case "7" -> isExit = true;
-                // default - > обработать невравильный ввод цифры
-            }
-        } while (!isExit);
-        scanner.close();
+        writer.setName(firstName, lastName, writerStatus, posts);
+
+        return writerRepository.save(writer);
     }
 
-    public static void create() throws FileNotFoundException {
-        System.out.println("create");
+    public Writer read(Integer id) {
+        return writerRepository.getById(id);
     }
 
-    public static void update() throws FileNotFoundException {}
+    public Writer update(Integer id, String firstName, String lastName, WriterStatus writerStatus, List<Post> posts) throws IOException {
+        Writer writer = new Writer();
+        writer.setName(firstName, lastName, writerStatus, posts);
+        writer.setId(id);
 
-    public static void delete() throws FileNotFoundException {
-        System.out.println("delete");
+        return writerRepository.update(writer);
     }
 
-    public static void show() throws FileNotFoundException {
-        System.out.println("show");
+    public void delete(Integer id) throws IOException {
+        writerRepository.deleteById(id);
     }
 
-    public static void addListElementsForWriter() throws FileNotFoundException {
-        System.out.println("add elem");
+    public List<Writer> getAll() {
+        return writerRepository.getAll();
     }
-//    public static ArrayList<Post> addListPostsForWriterById(int wrId) throws FileNotFoundException {}
+
+    public Writer addPostToWriter(Integer id, Post post) throws IOException {
+        Writer writer = writerRepository.getById(id);
+        writer.addPostToWriter(post);
+
+        return writerRepository.update(writer);
+    }
+
 }

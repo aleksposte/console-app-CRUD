@@ -3,7 +3,6 @@ import com.app.controller.LabelController;
 import com.app.model.Label;
 import com.app.poststatus.LabelStatus;
 
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class LabelView {
 
     public void start() throws IOException {
         String menuMessage =
-                "Choice and Enter: \n" +
+                "Choose and Enter: \n" +
                         "1. Create \n" +
                         "2. Read (Id) \n" +
                         "3. Update \n" +
@@ -33,30 +32,14 @@ public class LabelView {
             String responce = scanner.next();
 
             switch (responce) {
-                case "1" -> {
-                    isExit = true;
-                    create();
-                }
-                case "2" -> {
-                    isExit = true;
-                    read();
-                }
-                case "3" -> {
-                    isExit = true;
-                    update();
-                }
-                case "4" -> {
-                    isExit = true;
-                    delete();
-                }
-                case "5" -> {
-                    isExit = true;
-                    getAll();
-                }
+                case "1" -> create();
+                case "2" -> read();
+                case "3" -> update();
+                case "4" -> delete();
+                case "5" -> getAll();
                 case "0" -> {
                     System.out.println("exit Label!");
                     isExit = false;
-                    System.exit(0);
                 }
                 default ->
                       System.out.println("wrong num!");

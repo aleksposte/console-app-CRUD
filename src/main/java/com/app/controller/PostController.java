@@ -15,7 +15,6 @@ public class PostController {
 
     public Post create(String name, Date created, Date updated, PostStatus postStatus, List<Label> labels) throws IOException {
         Post post = new Post();
-        System.out.println("PostController  ->  " + name + postStatus + labels);
         post.setName(name, created, updated, postStatus, labels);
 
         return postRepository.save(post);

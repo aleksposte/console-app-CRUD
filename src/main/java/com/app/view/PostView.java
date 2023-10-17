@@ -1,5 +1,4 @@
 package com.app.view;
-
 import com.app.controller.LabelController;
 import com.app.controller.PostController;
 import com.app.model.Label;
@@ -25,7 +24,7 @@ public class PostView {
 
     public void start() throws IOException {
         String menuMessage =
-                "Choice and Enter: \n" +
+                "Choose and Enter: \n" +
                         "1. Create \n" +
                         "2. Read (Id) \n" +
                         "3. Update \n" +
@@ -39,34 +38,15 @@ public class PostView {
             String responce = scanner.next();
 
             switch (responce) {
-                case "1" -> {
-                    isExit = true;
-                    create();
-                }
-                case "2" -> {
-                    isExit = true;
-                    read();
-                }
-                case "3" -> {
-                    isExit = true;
-                    update();
-                }
-                case "4" -> {
-                    isExit = true;
-                    delete();
-                }
-                case "5" -> {
-                    isExit = true;
-                    getAll();
-                }
-                case "6" -> {
-                    isExit = true;
-                    addLabelToPost();
-                }
+                case "1" -> create();
+                case "2" -> read();
+                case "3" -> update();
+                case "4" -> delete();
+                case "5" -> getAll();
+                case "6" -> addLabelToPost();
                 case "0" -> {
                     System.out.println("exit Post!");
                     isExit = false;
-                    System.exit(0);
                 }
                 default ->
                       System.out.println("wrong num!");
@@ -82,7 +62,7 @@ public class PostView {
         Date created = new Date();
         Date updated = new Date();
         PostStatus postStatus = PostStatus.ACTIVE;
-        List<Label> labels = new ArrayList<Label>();
+        List<Label> labels = new ArrayList<>();
 
         postController.create(name, created, updated, postStatus, labels);
         start();
