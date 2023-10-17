@@ -75,7 +75,7 @@ public class WriterView {
         Integer id = scanner.nextInt();
 
         writerController.read(id);
-        System.out.println("Read Post Id: " + writerController.read(id).getFirstName() + " " + writerController.read(id).getLastName());
+        System.out.println("Read Writer: " + writerController.read(id).getFirstName() + " " + writerController.read(id).getLastName());
         start();
     }
 
