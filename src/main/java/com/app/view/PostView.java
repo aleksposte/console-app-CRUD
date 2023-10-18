@@ -13,13 +13,8 @@ import java.util.Scanner;
 
 public class PostView {
     private final PostController postController;
-
-    Scanner scanner = new Scanner(System.in);
-    boolean isExit = false;
-
-    public PostView(PostController postController) {
-        this.postController = postController;
-    }
+    public PostView(PostController postController) { this.postController = postController; }
+    private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         String menuMessage =
@@ -33,24 +28,20 @@ public class PostView {
                         "0. Exit";
         System.out.println(menuMessage);
 
-         do {
-            String responce = scanner.next();
+        while(true) {
+            String response = scanner.next();
 
-            switch (responce) {
+            switch(response) {
                 case "1" -> create();
                 case "2" -> read();
                 case "3" -> update();
                 case "4" -> delete();
                 case "5" -> getAll();
                 case "6" -> addLabelToPost();
-                case "0" -> {
-                    System.out.println("exit Post!");
-                    isExit = false;
-                }
-                default ->
-                      System.out.println("wrong num!");
+                case "0" -> System.out.println("exit Post!");
+                default -> System.out.println("wrong num!");
             }
-        } while (!isExit);
+        }
     }
 
     public void create() {

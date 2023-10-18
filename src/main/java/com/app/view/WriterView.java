@@ -14,13 +14,11 @@ import java.util.Scanner;
 
 public class WriterView {
     private final WriterController writerController;
-
-    Scanner scanner = new Scanner(System.in);
-    boolean isExit = false;
-
     public WriterView(WriterController writerController) {
         this.writerController = writerController;
     }
+
+    private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         String mainMessage = "Choose and Enter: \n" +
@@ -33,24 +31,20 @@ public class WriterView {
                 "0. Exit";
         System.out.println(mainMessage);
 
-        do {
-            String responce = scanner.next();
+        while(true) {
+            String response = scanner.next();
 
-            switch (responce) {
+            switch(response) {
                 case "1" -> create();
                 case "2" -> read();
                 case "3" -> update();
                 case "4" -> delete();
                 case "5" -> getAll();
                 case "6" -> addPostToWriter();
-                case "0" -> {
-                    System.out.println("exit Writer!");
-                    isExit = false;
-                }
-                default ->
-                        System.out.println("wrong num!");
+                case "0" -> System.out.println("exit Writer!");
+                default -> System.out.println("wrong num!");
             }
-        } while (!isExit);
+        }
     }
 
     public void create() {

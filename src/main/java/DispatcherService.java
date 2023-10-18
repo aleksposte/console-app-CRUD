@@ -7,18 +7,16 @@ import com.app.view.WriterView;
 
 import java.util.Scanner;
 
-public class AppRunner {
-    LabelController labelController = new LabelController();
-    LabelView labelView = new LabelView(labelController);
+public class DispatcherService {
+    private final LabelController labelController = new LabelController();
+    private final PostController postController = new PostController();
+    private final WriterController wriController = new WriterController();
 
-    PostController postController = new PostController();
-    PostView postView = new PostView(postController);
+    private final LabelView labelView = new LabelView(labelController);
+    private final PostView postView = new PostView(postController);
+    private final WriterView writerView = new WriterView(wriController);
 
-    WriterController wriController = new WriterController();
-    WriterView writerView = new WriterView(wriController);
-
-    Scanner scanner = new Scanner(System.in);
-    boolean isExit = false;
+    private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         String menuMessage =
@@ -29,21 +27,20 @@ public class AppRunner {
                         "0. Exit";
         System.out.println(menuMessage);
 
-        do {
-            String responce = scanner.next();
+        while (true){
+            String response = scanner.next();
 
-            switch (responce) {
+            switch (response) {
                 case "1" -> labelStart();
                 case "2" -> postStart();
                 case "3" -> writerStart();
                 case "0" -> {
                     System.out.println("Exit Main Menu!");
-                    isExit = false;
+                    System.exit(0);
                 }
                 default -> System.out.println("Wrong Num!");
             }
-        } while (!isExit);
-        scanner.close();
+        }
     }
 
     public void labelStart() {

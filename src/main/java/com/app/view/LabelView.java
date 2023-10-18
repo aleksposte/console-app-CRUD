@@ -8,13 +8,11 @@ import java.util.Scanner;
 
 public class LabelView {
     private final LabelController labelController;
-
-    Scanner scanner = new Scanner(System.in);
-    boolean isExit = false;
-
     public LabelView(LabelController labelController) {
         this.labelController = labelController;
     }
+
+    private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         String menuMessage =
@@ -27,23 +25,19 @@ public class LabelView {
                         "0. Exit";
         System.out.println(menuMessage);
 
-         do {
-            String responce = scanner.next();
+        while(true) {
+            String response = scanner.next();
 
-            switch (responce) {
+            switch(response) {
                 case "1" -> create();
                 case "2" -> read();
                 case "3" -> update();
                 case "4" -> delete();
                 case "5" -> getAll();
-                case "0" -> {
-                    System.out.println("exit Label!");
-                    isExit = false;
-                }
-                default ->
-                      System.out.println("wrong num!");
+                case "0" -> System.out.println("exit Label!");
+                default -> System.out.println("wrong num!");
             }
-        } while (!isExit);
+        }
     }
 
     public void create() {
