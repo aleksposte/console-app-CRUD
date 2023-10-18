@@ -7,7 +7,6 @@ import com.app.model.Writer;
 import com.app.poststatus.PostStatus;
 import com.app.poststatus.WriterStatus;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +22,7 @@ public class WriterView {
         this.writerController = writerController;
     }
 
-    public void start() throws IOException {
+    public void start() {
         String mainMessage = "Choose and Enter: \n" +
                 "1. Create \n" +
                 "2. Read (Id) \n" +
@@ -54,7 +53,7 @@ public class WriterView {
         } while (!isExit);
     }
 
-    public void create() throws IOException {
+    public void create() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter  FirstName: ");
         String firstName = scanner.nextLine();
@@ -69,7 +68,7 @@ public class WriterView {
         start();
     }
 
-    public void read() throws IOException {
+    public void read() {
         System.out.println("Enter Writer ID: ");
         Scanner scanner = new Scanner(System.in);
         Integer id = scanner.nextInt();
@@ -79,7 +78,7 @@ public class WriterView {
         start();
     }
 
-    public void update() throws IOException {
+    public void update() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Writer ID: ");
         Integer id = scanner.nextInt();
@@ -100,7 +99,7 @@ public class WriterView {
         start();
     }
 
-    public void delete() throws IOException {
+    public void delete() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Writer ID: ");
         Integer id = scanner.nextInt();
@@ -110,7 +109,7 @@ public class WriterView {
         start();
     }
 
-    public void getAll() throws IOException {
+    public void getAll() {
         List<Writer> writers = writerController.getAll();
         System.out.println("All Writers: ");
         for(Writer writer : writers){
@@ -119,7 +118,7 @@ public class WriterView {
         start();
     }
 
-    public void addPostToWriter() throws IOException {
+    public void addPostToWriter() {
         PostController postController = new PostController();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Writer ID For Add Post: ");

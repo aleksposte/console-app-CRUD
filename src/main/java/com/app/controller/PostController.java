@@ -6,14 +6,13 @@ import com.app.poststatus.PostStatus;
 import com.app.repository.PostRepository;
 import com.app.repository.gson.GsonPostRepositoryImpl;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 public class PostController {
     private final PostRepository postRepository = new GsonPostRepositoryImpl();
 
-    public Post create(String name, Date created, Date updated, PostStatus postStatus, List<Label> labels) throws IOException {
+    public Post create(String name, Date created, Date updated, PostStatus postStatus, List<Label> labels) {
         Post post = new Post();
         post.setName(name, created, updated, postStatus, labels);
 
@@ -24,7 +23,7 @@ public class PostController {
         return postRepository.getById(id);
     }
 
-    public Post update(Integer id, String name, Date created, Date updated, PostStatus postStatus, List<Label> labels) throws IOException {
+    public Post update(Integer id, String name, Date created, Date updated, PostStatus postStatus, List<Label> labels) {
         Post post = new Post();
         post.setName(name, created, updated, postStatus, labels);
         post.setId(id);
@@ -32,7 +31,7 @@ public class PostController {
         return postRepository.update(post);
     }
 
-    public void delete(Integer id) throws IOException {
+    public void delete(Integer id) {
         postRepository.deleteById(id);
     }
 
@@ -40,7 +39,7 @@ public class PostController {
         return postRepository.getAll();
     }
 
-    public Post addLabelToPost(Integer id, Label label) throws IOException {
+    public Post addLabelToPost(Integer id, Label label) {
         Post post = postRepository.getById(id);
         post.addLabelToPost(label);
 

@@ -61,7 +61,7 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
     }
 
     @Override
-    public Label save(Label labelToSave) throws IOException {
+    public Label save(Label labelToSave) {
         List<Label> labels = getAllLabels();
 
         labelToSave.setId(generateId(labels));
@@ -72,7 +72,7 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
     }
 
     @Override
-    public Label update(Label labelToUpdate) throws IOException {
+    public Label update(Label labelToUpdate) {
         List<Label> labels = getAllLabels()
                 .stream().map(existingLabel -> {
                     if(existingLabel.getId().equals(labelToUpdate.getId())) {
@@ -85,7 +85,7 @@ public class GsonLabelRepositoryImpl implements LabelRepository {
     }
 
     @Override
-    public void deleteById(Integer id) throws IOException {
+    public void deleteById(Integer id) {
         List<Label> labels = getAllLabels()
                 .stream().map(existingLabel -> {
                     if(existingLabel.getId().equals(id)) {

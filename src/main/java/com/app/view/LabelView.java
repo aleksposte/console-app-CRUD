@@ -3,7 +3,6 @@ import com.app.controller.LabelController;
 import com.app.model.Label;
 import com.app.poststatus.LabelStatus;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,7 @@ public class LabelView {
         this.labelController = labelController;
     }
 
-    public void start() throws IOException {
+    public void start() {
         String menuMessage =
                 "Choose and Enter: \n" +
                         "1. Create \n" +
@@ -47,7 +46,7 @@ public class LabelView {
         } while (!isExit);
     }
 
-    public void create() throws IOException {
+    public void create() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Label name: ");
         String name = scanner.nextLine();
@@ -58,7 +57,7 @@ public class LabelView {
         start();
     }
 
-    public void read() throws IOException {
+    public void read() {
         System.out.println("Enter Label ID: ");
         Scanner scanner = new Scanner(System.in);
         Integer id = scanner.nextInt();
@@ -68,7 +67,7 @@ public class LabelView {
         start();
     }
 
-    public void update() throws IOException {
+    public void update() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Label ID: ");
         Integer id = scanner.nextInt();
@@ -84,7 +83,7 @@ public class LabelView {
         start();
     }
 
-    public void delete() throws IOException {
+    public void delete() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Label ID: ");
         Integer id = scanner.nextInt();
@@ -94,7 +93,7 @@ public class LabelView {
         start();
     }
 
-    public void getAll() throws IOException {
+    public void getAll() {
         List<Label> labels = labelController.getAll();
         System.out.println("All Labels: ");
         for(Label label : labels){

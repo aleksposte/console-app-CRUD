@@ -21,4 +21,5 @@ public class Label {
         this.name = name;
         this.labelStatus = labelStatus;
     }
+
 }

@@ -64,7 +64,7 @@ public class GsonWriterRepositoryImpl implements WriterRepository {
     }
 
     @Override
-    public Writer save(Writer writerToSave) throws IOException {
+    public Writer save(Writer writerToSave) {
         List<Writer> writer = getAllWriters();
 
         writerToSave.setId(generateId(writer));
@@ -75,7 +75,7 @@ public class GsonWriterRepositoryImpl implements WriterRepository {
     }
 
     @Override
-    public Writer update(Writer writerToUpdate) throws IOException {
+    public Writer update(Writer writerToUpdate) {
         List<Writer> writers = getAllWriters()
                 .stream().map(existingPost -> {
                     if(existingPost.getId().equals(writerToUpdate.getId())) {
@@ -88,7 +88,7 @@ public class GsonWriterRepositoryImpl implements WriterRepository {
     }
 
     @Override
-    public void deleteById(Integer id) throws IOException {
+    public void deleteById(Integer id) {
         List<Writer> writers = getAllWriters()
                 .stream().map(existingPost -> {
                     if(existingPost.getId().equals(id)) {

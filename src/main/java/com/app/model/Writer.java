@@ -33,10 +33,7 @@ public class Writer {
     }
 
     public void addPostToWriter(Post post) {
-        if (posts == null) {
-            posts = new ArrayList<>();
-        }
-
+        posts = (posts == null) ? new ArrayList<>() : posts;
         posts.add(post);
     }
 }

@@ -65,7 +65,7 @@ public class GsonPostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Post save(Post postToSave) throws IOException {
+    public Post save(Post postToSave) {
         List<Post> posts = getAllPosts();
 
         postToSave.setId(generateId(posts));
@@ -76,7 +76,7 @@ public class GsonPostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Post update(Post postToUpdate) throws IOException {
+    public Post update(Post postToUpdate) {
         List<Post> posts = getAllPosts()
                 .stream().map(existingPost -> {
                     if(existingPost.getId().equals(postToUpdate.getId())) {
@@ -89,7 +89,7 @@ public class GsonPostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public void deleteById(Integer id) throws IOException {
+    public void deleteById(Integer id) {
         List<Post> posts = getAllPosts()
                 .stream().map(existingPost -> {
                     if(existingPost.getId().equals(id)) {

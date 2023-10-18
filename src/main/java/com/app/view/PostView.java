@@ -6,7 +6,6 @@ import com.app.model.Post;
 import com.app.poststatus.LabelStatus;
 import com.app.poststatus.PostStatus;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +21,7 @@ public class PostView {
         this.postController = postController;
     }
 
-    public void start() throws IOException {
+    public void start() {
         String menuMessage =
                 "Choose and Enter: \n" +
                         "1. Create \n" +
@@ -54,7 +53,7 @@ public class PostView {
         } while (!isExit);
     }
 
-    public void create() throws IOException {
+    public void create() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Post name: ");
         String name = scanner.nextLine();
@@ -68,7 +67,7 @@ public class PostView {
         start();
     }
 
-    public void read() throws IOException {
+    public void read() {
         System.out.println("Enter Post ID: ");
         Scanner scanner = new Scanner(System.in);
         Integer id = scanner.nextInt();
@@ -78,7 +77,7 @@ public class PostView {
         start();
     }
 
-    public void update() throws IOException {
+    public void update() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Post ID: ");
         Integer id = scanner.nextInt();
@@ -97,7 +96,7 @@ public class PostView {
         start();
     }
 
-    public void delete() throws IOException {
+    public void delete() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Post ID: ");
         Integer id = scanner.nextInt();
@@ -107,7 +106,7 @@ public class PostView {
         start();
     }
 
-    public void getAll() throws IOException {
+    public void getAll() {
         List<Post> labels = postController.getAll();
         System.out.println("All Posts: ");
         for(Post label : labels){
@@ -116,7 +115,7 @@ public class PostView {
         start();
     }
 
-    public void addLabelToPost() throws IOException {
+    public void addLabelToPost() {
         LabelController labelController = new LabelController();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Post ID For Add Label: ");

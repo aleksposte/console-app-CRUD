@@ -5,13 +5,12 @@ import com.app.poststatus.LabelStatus;
 import com.app.repository.LabelRepository;
 import com.app.repository.gson.GsonLabelRepositoryImpl;
 
-import java.io.IOException;
 import java.util.List;
 
 public class LabelController {
     private final LabelRepository labelRepository = new GsonLabelRepositoryImpl();
 
-    public Label create(String name, LabelStatus labelStatus) throws IOException {
+    public Label create(String name, LabelStatus labelStatus) {
         Label label = new Label();
         label.setName(name, labelStatus);
 
@@ -22,7 +21,7 @@ public class LabelController {
         return labelRepository.getById(id);
     }
 
-    public Label update(Integer id, String name, LabelStatus labelStatus) throws IOException {
+    public Label update(Integer id, String name, LabelStatus labelStatus) {
         Label label = new Label();
         label.setName(name, labelStatus);
         label.setId(id);
@@ -30,7 +29,7 @@ public class LabelController {
         return labelRepository.update(label);
     }
 
-    public void delete(Integer id) throws IOException {
+    public void delete(Integer id) {
         labelRepository.deleteById(id);
     }
 

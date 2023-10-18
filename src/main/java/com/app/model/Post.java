@@ -38,10 +38,7 @@ public class Post {
     }
 
     public void addLabelToPost(Label label) {
-        if (labels == null) {
-            labels = new ArrayList<>();
-        }
-
+        labels = (labels == null) ? new ArrayList<>() : labels;
         labels.add(label);
     }
 }

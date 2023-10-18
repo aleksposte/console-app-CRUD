@@ -5,14 +5,22 @@ import com.app.view.LabelView;
 import com.app.view.PostView;
 import com.app.view.WriterView;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class AppRunner {
+    LabelController labelController = new LabelController();
+    LabelView labelView = new LabelView(labelController);
+
+    PostController postController = new PostController();
+    PostView postView = new PostView(postController);
+
+    WriterController wriController = new WriterController();
+    WriterView writerView = new WriterView(wriController);
+
     Scanner scanner = new Scanner(System.in);
     boolean isExit = false;
 
-    public void start() throws Exception {
+    public void start() {
         String menuMessage =
                 "Choice and Enter: \n" +
                         "1. Label\n" +
@@ -31,7 +39,6 @@ public class AppRunner {
                 case "0" -> {
                     System.out.println("Exit Main Menu!");
                     isExit = false;
-                    System.exit(0);
                 }
                 default -> System.out.println("Wrong Num!");
             }
@@ -39,24 +46,15 @@ public class AppRunner {
         scanner.close();
     }
 
-    public void labelStart() throws IOException {
-        LabelController labelController = new LabelController();
-        LabelView labelView = new LabelView(labelController);
-
+    public void labelStart() {
         labelView.start();
     }
 
-    public void postStart() throws IOException {
-        PostController postController = new PostController();
-        PostView postView = new PostView(postController);
-
+    public void postStart() {
         postView.start();
     }
 
-    public void writerStart() throws IOException {
-        WriterController wriController = new WriterController();
-        WriterView writerView = new WriterView(wriController);
-
+    public void writerStart() {
         writerView.start();
     }
 };
