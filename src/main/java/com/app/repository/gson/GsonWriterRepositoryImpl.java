@@ -1,10 +1,7 @@
 package com.app.repository.gson;
 
-import com.app.model.Post;
 import com.app.model.Writer;
-import com.app.poststatus.PostStatus;
 import com.app.poststatus.WriterStatus;
-import com.app.repository.PostRepository;
 import com.app.repository.WriterRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

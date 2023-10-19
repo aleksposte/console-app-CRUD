@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class PostView {
     private final PostController postController;
     public PostView(PostController postController) { this.postController = postController; }
+
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() {

@@ -1,10 +1,7 @@
 package com.app.repository.gson;
 
-import com.app.model.Label;
 import com.app.model.Post;
-import com.app.poststatus.LabelStatus;
 import com.app.poststatus.PostStatus;
-import com.app.repository.LabelRepository;
 import com.app.repository.PostRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,7 +13,6 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 public class GsonPostRepositoryImpl implements PostRepository {
